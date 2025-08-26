@@ -73,4 +73,34 @@ export const MOCK_VIDEOS: Video[] = [
       staticFilesUrl + 'Fluffy_Characters_Picnic_in_a_Mushroom_Forest.mp4',
     description: `Fluffy Characters Stop Motion: A bright, whimsical forest clearing where oversized, colorful mushrooms grow. Two adorable, fluffy squirrel-like creatures with big, curious eyes are having a picnic. One, wearing a tiny knitted scarf, attempts to open a jar of "Nutty Spread," making frustrated, soft "grunts" and tiny "panting" sounds. The camera is a mid-shot, then slowly zooms in on the struggling jar. The other, an even fluffier creature with a flower behind its ear, giggles softly, then says in a sweet, high-pitched voice, "Need a paw, Squiggle?" A gentle, melodic flute tune plays throughout.`,
   },
+  {
+    id: '11',
+    title: "Watercolor Animation: A Fox's Journey",
+    videoUrl: staticFilesUrl + "Watercolor_Animation_A_Fox_s_Journey.mp4",
+    description: `A beautiful watercolor animation of a fox journeying through a forest. The colors blend and shift with each movement, creating a dreamlike atmosphere. Soft piano music accompanies the visuals, with the gentle sounds of the forest in the background, like rustling leaves and distant bird calls.`
+  },
+  {
+    id: '12',
+    title: "Drone Shot: Majestic Icelandic Waterfall",
+    videoUrl: staticFilesUrl + "Drone_Shot_Majestic_Icelandic_Waterfall.mp4",
+    description: `An epic aerial drone shot of a massive waterfall in Iceland. The camera circles the cascading water, capturing its power and the surrounding lush green cliffs. The roar of the water is the dominant sound, creating a sense of awe and wonder. The mist from the waterfall creates a beautiful rainbow.`
+  },
+  {
+    id: '13',
+    title: "Time-lapse: Tokyo by Night",
+    videoUrl: staticFilesUrl + "Time_lapse_Tokyo_by_Night.mp4",
+    description: `A stunning time-lapse of Tokyo at night. The camera captures the bustling city streets, with streams of car lights and trains moving like rivers of light. The neon signs of Shibuya crossing flash brightly. A futuristic, synth-wave soundtrack plays, perfectly matching the city's vibrant energy.`
+  },
+  {
+    id: '14',
+    title: "Close-up: The Art of Making Pasta",
+    videoUrl: staticFilesUrl + "Close_up_The_Art_of_Making_Pasta.mp4",
+    description: `A macro close-up shot of hands skillfully making fresh pasta from scratch. Flour dusts the wooden surface as dough is kneaded, rolled, and cut into delicate shapes. The sounds are satisfyingly ASMR-like: the soft squish of the dough, the gentle scrape of the cutter. Warm, inviting Italian folk music plays in the background.`
+  },
+  {
+    id: '15',
+    title: "Sci-Fi Short: An Alien Encounter",
+    videoUrl: staticFilesUrl + "Sci_Fi_Short_An_Alien_Encounter.mp4",
+    description: `In a desolate alien landscape under a purple sky with two moons, an astronaut in a silver suit cautiously approaches a strange, glowing crystalline structure. Eerie, atmospheric music builds tension. The astronaut reaches out a gloved hand, and as it touches the crystal, it pulses with a brilliant blue light, emitting a low, resonant hum. The sound design is key, with the crunch of alien soil underfoot and the astronaut's own breathing inside the helmet.`
+  },
 ];

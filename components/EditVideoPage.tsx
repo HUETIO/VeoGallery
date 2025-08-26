@@ -7,7 +7,7 @@ import {Video} from '../types';
 
 interface EditVideoPageProps {
   video: Video;
-  onSave: (updatedVideo: Video) => void;
+  onSave: (updatedVideo: Video, numberOfVideos: number) => void;
   onCancel: () => void;
 }
 
@@ -21,9 +21,10 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
   onCancel,
 }) => {
   const [description, setDescription] = useState(video.description);
+  const [numberOfVideos, setNumberOfVideos] = useState(1);
 
   const handleSave = () => {
-    onSave({...video, description});
+    onSave({...video, description}, numberOfVideos);
   };
 
   return (
@@ -31,7 +32,7 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
       <div className="w-full max-w-2xl bg-gray-800 p-6 md:p-8 rounded-lg shadow-2xl">
         <header className="mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
-            Edit Video
+            Remix Video
           </h1>
         </header>
 
@@ -51,6 +52,30 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
               aria-label={`Edit description for the video`}
             />
           </div>
+          <div className="mb-6">
+            <div className="flex justify-between items-center">
+              <label
+                htmlFor="numberOfVideos"
+                className="text-sm font-medium text-gray-300">
+                Number of videos to generate
+              </label>
+              <input
+                type="number"
+                id="numberOfVideos"
+                min="1"
+                max="4"
+                className="w-24 bg-gray-900 border border-gray-700 rounded-lg p-2 text-center text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                value={numberOfVideos}
+                onChange={(e) => {
+                  let num = parseInt(e.target.value, 10) || 1;
+                  if (num < 1) num = 1;
+                  if (num > 4) num = 4;
+                  setNumberOfVideos(num);
+                }}
+                aria-label="Number of videos to generate"
+              />
+            </div>
+          </div>
         </main>
 
         <footer className="flex justify-end gap-4">
@@ -62,7 +87,7 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
           <button
             onClick={handleSave}
             className="px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-colors">
-            Generate new video
+            Generate new video(s)
           </button>
         </footer>
       </div>

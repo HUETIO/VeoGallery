@@ -105,15 +105,21 @@ export const App: React.FC = () => {
     setEditingVideo(null); // Close edit page, return to grid
   };
 
-  const handleSaveEdit = async (originalVideo: Video) => {
+  const handleSaveEdit = async (
+    originalVideo: Video,
+    numberOfVideos: number,
+  ) => {
     setEditingVideo(null);
     setIsSaving(true);
     setGenerationError(null);
 
     try {
       const promptText = originalVideo.description;
-      console.log('Generating video...', promptText);
-      const videoObjects = await generateVideoFromText(promptText);
+      console.log(`Generating ${numberOfVideos} video(s)...`, promptText);
+      const videoObjects = await generateVideoFromText(
+        promptText,
+        numberOfVideos,
+      );
 
       if (!videoObjects || videoObjects.length === 0) {
         throw new Error('Video generation returned no data.');
@@ -122,18 +128,22 @@ export const App: React.FC = () => {
       console.log('Generated video data received.');
 
       const mimeType = 'video/mp4';
-      const videoSrc = videoObjects[0];
-      const src = `data:${mimeType};base64,${videoSrc}`;
+      const newVideos: Video[] = videoObjects.map((videoSrc, index) => {
+        const src = `data:${mimeType};base64,${videoSrc}`;
+        const title =
+          numberOfVideos > 1
+            ? `Remix of "${originalVideo.title}" (${index + 1}/${numberOfVideos})`
+            : `Remix of "${originalVideo.title}"`;
+        return {
+          id: self.crypto.randomUUID(),
+          title,
+          description: originalVideo.description,
+          videoUrl: src,
+        };
+      });
 
-      const newVideo: Video = {
-        id: self.crypto.randomUUID(),
-        title: `Remix of "${originalVideo.title}"`,
-        description: originalVideo.description,
-        videoUrl: src,
-      };
-
-      setVideos((currentVideos) => [newVideo, ...currentVideos]);
-      setPlayingVideo(newVideo); // Go to the new video
+      setVideos((currentVideos) => [...newVideos, ...currentVideos]);
+      setPlayingVideo(newVideos[0]); // Go to the new video
     } catch (error) {
       console.error('Video generation failed:', error);
       setGenerationError([
@@ -166,6 +176,9 @@ export const App: React.FC = () => {
             </h1>
             <p className="text-gray-400 mt-2 text-lg">
               Select a video to generate your own variations
+            </p>
+            <p className="text-gray-300 mt-2 text-base">
+              {videos.length} videos in the gallery
             </p>
           </header>
           <main className="px-4 md:px-8 pb-8">
